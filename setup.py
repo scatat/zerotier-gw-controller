@@ -1,15 +1,14 @@
-zerotier-gw-controller/setup.py#L1-34
 from setuptools import setup, find_packages
 
 setup(
     name="zerotier-gateway-controller",
     version="1.0.0",
     description="Automated failover controller for ZeroTier network gateways",
-    long_description=open("README.md").read() if __name__ == "__main__" else "",
+    long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Stephen Tan",
     author_email="stephen.tan@example.com",
-    url="https://github.com/yourusername/zerotier-gateway-controller",
+    url="https://github.com/stephentan/zerotier-gateway-controller",
     license="MIT",
     packages=find_packages(where="src"),
     package_dir={"": "src"},

@@ -1,4 +1,3 @@
-# tasks/main.yml
 ---
 # Ansible Role: ZeroTier Gateway Controller
 # Installs the Debian package, configures the service, and ensures it is running.
@@ -25,7 +24,7 @@
     dest: /etc/zerotier-gateway-controller/config.yaml
     owner: zerotier-controller
     group: zerotier-controller
-    mode: '0600'
+    mode: "0600"
   notify: Restart controller service
 
 - name: Ensure systemd service is enabled and started
@@ -33,7 +32,6 @@
     name: zerotier-gateway-controller
     enabled: yes
     state: started
-
 # Handlers (should be defined in handlers/main.yml)
 # - name: Restart controller service
 #   systemd:
