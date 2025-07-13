@@ -1,0 +1,27 @@
+zerotier-gw-controller/pyproject.toml#L1-27
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zerotier-gateway-controller"
+version = "0.1.0"
+description = "Automated failover controller for ZeroTier network gateways"
+authors = [
+    { name = "Stephen Tan", email = "stephen.tan@example.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.25.0",
+    "PyYAML>=5.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/stephentan/zerotier-gateway-controller"
+Documentation = "https://github.com/stephentan/zerotier-gateway-controller/docs"
+Repository = "https://github.com/stephentan/zerotier-gateway-controller"
+
+[tool.setuptools.packages.find]
+where = ["src"]

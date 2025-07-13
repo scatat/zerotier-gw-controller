@@ -1,0 +1,21 @@
+[Unit]
+Description=ZeroTier Gateway Controller Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=zerotier-controller
+Group=zerotier-controller
+ExecStart=/usr/bin/python3 -m zerotier_gateway_controller.cli --config /etc/zerotier-gateway-controller/config.yaml
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/var/lib/zerotier-gateway-controller
+Environment="PYTHONUNBUFFERED=1"
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

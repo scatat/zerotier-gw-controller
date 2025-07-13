@@ -1,0 +1,26 @@
+#!/bin/bash
+# prerm script for zerotier-gateway-controller Debian package
+
+set -e
+
+SERVICE="zerotier-gateway-controller"
+
+# Stop the systemd service if running
+if systemctl is-active --quiet "$SERVICE"; then
+    systemctl stop "$SERVICE"
+fi
+
+# Disable the systemd service
+if systemctl is-enabled --quiet "$SERVICE"; then
+    systemctl disable "$SERVICE"
+fi
+
+# Remove systemd unit file if present
+UNIT_FILE="/etc/systemd/system/${SERVICE}.service"
+if [ -f "$UNIT_FILE" ]; then
+    rm -f "$UNIT_FILE"
+    systemctl daemon-reload
+fi
+
+echo "ZeroTier Gateway Controller pre-removal cleanup complete."
+exit 0

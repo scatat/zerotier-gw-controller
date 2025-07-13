@@ -1,0 +1,25 @@
+zerotier-gw-controller/debian/config.yaml.example
+# Example configuration for ZeroTier Gateway Controller
+# Copy to /etc/zerotier-gateway-controller/config.yaml or ~/.config/zerotier-gateway-controller/config.yaml
+
+zerotier:
+  api_token: "zt_api_token_here"         # ZeroTier Central API token (required)
+  network_id: "network_id_here"          # ZeroTier network ID (required)
+  home_subnet: "10.0.1222.0/24"          # Target home subnet to route (required)
+
+grafana:                                 # Optional Grafana Cloud Loki integration
+  loki_url: "https://logs-prod-XX.grafana.net/loki/api/v1/push"
+  api_key: "grafana_api_key_here"
+
+gateways:
+  - name: "kingdok"                      # Primary gateway
+    ip: "172.23.0.1"
+    priority: 1
+  - name: "fone"                         # Backup gateway
+    ip: "172.23.0.2"
+    priority: 2
+
+check_interval: 60                       # Health check interval in seconds (default: 60)
+log_level: "INFO"                        # Logging verbosity: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# End of config

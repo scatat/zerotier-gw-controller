@@ -1,0 +1,27 @@
+zerotier-gw-controller/debian/postinst
+#!/bin/bash
+# postinst script for zerotier-gateway-controller Debian package
+
+set -e
+
+# Create system user if not exists
+if ! id "zerotier-controller" >/dev/null 2>&1; then
+    useradd --system --no-create-home --shell /usr/sbin/nologin zerotier-controller
+fi
+
+# Ensure config directory exists
+install -d -o zerotier-controller -g zerotier-controller -m 0755 /etc/zerotier-gateway-controller
+
+# Copy example config if not present
+if [ ! -f /etc/zerotier-gateway-controller/config.yaml ]; then
+    cp /usr/share/zerotier-gateway-controller/config.yaml.example /etc/zerotier-gateway-controller/config.yaml
+    chown zerotier-controller:zerotier-controller /etc/zerotier-gateway-controller/config.yaml
+    chmod 600 /etc/zerotier-gateway-controller/config.yaml
+fi
+
+# Reload systemd daemon and enable service
+systemctl daemon-reload
+systemctl enable zerotier-gateway-controller.service
+
+echo "ZeroTier Gateway Controller post-installation complete."
+exit 0

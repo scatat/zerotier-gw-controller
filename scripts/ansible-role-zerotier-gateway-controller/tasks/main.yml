@@ -1,0 +1,41 @@
+# tasks/main.yml
+---
+# Ansible Role: ZeroTier Gateway Controller
+# Installs the Debian package, configures the service, and ensures it is running.
+
+- name: Ensure required apt packages are installed
+  apt:
+    name:
+      - python3
+      - python3-requests
+      - python3-yaml
+      - iputils-ping
+    state: present
+    update_cache: yes
+
+- name: Install ZeroTier Gateway Controller Debian package
+  apt:
+    deb: "{{ zerotier_gateway_controller_deb | default('../zerotier-gateway-controller_1.0.0_all.deb') }}"
+  register: deb_install
+  ignore_errors: yes
+
+- name: Copy example config file to system location
+  copy:
+    src: "{{ zerotier_gateway_controller_config_example | default('../debian/config.yaml.example') }}"
+    dest: /etc/zerotier-gateway-controller/config.yaml
+    owner: zerotier-controller
+    group: zerotier-controller
+    mode: '0600'
+  notify: Restart controller service
+
+- name: Ensure systemd service is enabled and started
+  systemd:
+    name: zerotier-gateway-controller
+    enabled: yes
+    state: started
+
+# Handlers (should be defined in handlers/main.yml)
+# - name: Restart controller service
+#   systemd:
+#     name: zerotier-gateway-controller
+#     state: restarted

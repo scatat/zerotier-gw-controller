@@ -1,0 +1,61 @@
+---
+# ZeroTier Gateway Controller: Ansible Playbook (Stub)
+# This playbook automates installation, configuration, and service management
+# for the ZeroTier Gateway Controller on a target host.
+#
+# Usage:
+#   ansible-playbook -i inventory scripts/ansible-playbook.yaml
+
+- name: Install and configure ZeroTier Gateway Controller
+  hosts: zerotier_controller
+  become: yes
+  vars:
+    config_path: /etc/zerotier-gateway-controller/config.yaml
+    package_name: zerotier-gateway-controller
+    service_name: zerotier-gateway-controller
+    example_config: "{{ playbook_dir }}/../debian/config.yaml.example"
+
+  tasks:
+    - name: Ensure required apt packages are installed
+      apt:
+        name:
+          - python3
+          - python3-requests
+          - python3-yaml
+          - iputils-ping
+        state: present
+        update_cache: yes
+
+    - name: Install ZeroTier Gateway Controller Debian package
+      apt:
+        deb: "{{ playbook_dir }}/../zerotier-gateway-controller_1.0.0_all.deb"
+      register: deb_install
+      ignore_errors: yes
+
+    - name: Copy example config file to system location
+      copy:
+        src: "{{ example_config }}"
+        dest: "{{ config_path }}"
+        owner: zerotier-controller
+        group: zerotier-controller
+        mode: '0600'
+      notify: Restart controller service
+
+    - name: Ensure systemd service is enabled and started
+      systemd:
+        name: "{{ service_name }}"
+        enabled: yes
+        state: started
+
+  handlers:
+    - name: Restart controller service
+      systemd:
+        name: "{{ service_name }}"
+        state: restarted
+
+# TODO:
+# - Add tasks for config templating (API tokens, gateway IPs, etc.)
+# - Add tasks for user creation if not handled by package
+# - Add logrotate configuration
+# - Add uninstall/cleanup tasks
+# - Add integration with Grafana Loki if enabled in config
