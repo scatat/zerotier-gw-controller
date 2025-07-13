@@ -1,4 +1,3 @@
-zerotier-gw-controller/tests/test_controller.py#L1-28
 import pytest
 
 # Import the controller module (will fail until implemented)

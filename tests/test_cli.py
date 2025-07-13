@@ -1,4 +1,3 @@
-zerotier-gw-controller/tests/test_cli.py
 import pytest
 import sys
 from unittest import mock
