@@ -22,5 +22,13 @@ Homepage = "https://github.com/stephentan/zerotier-gateway-controller"
 Documentation = "https://github.com/stephentan/zerotier-gateway-controller/docs"
 Repository = "https://github.com/stephentan/zerotier-gateway-controller"
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black",
+    "flake8",
+    "mypy"
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]

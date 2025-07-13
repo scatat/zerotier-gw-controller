@@ -97,3 +97,51 @@ class ZeroTierGatewayController:
             else:
                 self.logger.critical("All gateways down. No route update performed.")
             time.sleep(self.config.check_interval)
+
+def run_controller(config_path=None, log_level=None, dry_run=False):
+    """
+    Entrypoint for CLI.
+    Loads config, sets up logging, and runs the controller.
+    """
+    import os
+
+    # Determine config file location
+    config_locations = []
+    if config_path:
+        config_locations.append(config_path)
+    config_locations.append(os.path.expanduser("~/.config/zerotier-gateway-controller/config.yaml"))
+    config_locations.append("/etc/zerotier-gateway-controller/config.yaml")
+
+    config = None
+    for path in config_locations:
+        if os.path.isfile(path):
+            with open(path, "r") as f:
+                config = yaml.safe_load(f)
+            break
+
+    if config is None:
+        raise FileNotFoundError(
+            f"No configuration file found in: {', '.join(config_locations)}"
+        )
+
+    # Set up logging
+    effective_log_level = log_level or config.get("log_level", "INFO")
+    logging.basicConfig(
+        level=getattr(logging, effective_log_level),
+        format="%(asctime)s %(levelname)s %(message)s",
+    )
+
+    controller_config = ControllerConfig(config)
+    controller = ZeroTierGatewayController(controller_config)
+
+    if dry_run:
+        logging.info("Running in dry-run mode. No API changes will be made.")
+        # Run one health check and print result
+        active_gw = controller.determine_active_gateway()
+        if active_gw:
+            logging.info(f"Active gateway would be: {active_gw.name} ({active_gw.ip})")
+        else:
+            logging.critical("No gateways are reachable!")
+        return
+
+    controller.run()
