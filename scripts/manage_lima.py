@@ -1,4 +1,3 @@
-zerotier-gw-controller/scripts/manage_lima.py
 #!/usr/bin/env python3
 """
 manage_lima.py - Automate Lima VM lifecycle and ZeroTier Gateway Controller build/test workflow.

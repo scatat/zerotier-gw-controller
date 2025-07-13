@@ -1,4 +1,3 @@
-zerotier-gw-controller/src/zerotier_gateway_controller/controller.py#L1-65
 """
 ZeroTier Gateway Controller: Main Logic
 

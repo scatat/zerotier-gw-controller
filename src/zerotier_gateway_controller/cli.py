@@ -1,4 +1,3 @@
-zerotier-gw-controller/src/zerotier_gateway_controller/cli.py#L1-38
 import argparse
 import sys
 import logging
