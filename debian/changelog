@@ -1,4 +1,3 @@
-zerotier-gw-controller/debian/changelog
 zerotier-gateway-controller (1.0.0-1) unstable; urgency=medium
 
   * Initial release.
