@@ -1,22 +1,5 @@
+zerotier-gw-controller/debian/rules
 #!/usr/bin/make -f
-# debian/rules file for zerotier-gateway-controller
-
-# Uncomment this to turn on verbose mode.
-# export DH_VERBOSE=1
 
 %:
-	dh $@
-
-override_dh_auto_install:
-	# Install Python package using setup.py
-	python3 setup.py install --root=$(CURDIR)/debian/zerotier-gateway-controller --install-layout=deb
-
-	# Install example config
-	install -D -m 0644 debian/config.yaml.example $(CURDIR)/debian/zerotier-gateway-controller/usr/share/zerotier-gateway-controller/config.yaml.example
-
-	# Install systemd unit file
-	install -D -m 0644 debian/zerotier-gateway-controller.service $(CURDIR)/debian/zerotier-gateway-controller/etc/systemd/system/zerotier-gateway-controller.service
-
-	# Install postinst and prerm scripts
-	install -D -m 0755 debian/postinst $(CURDIR)/debian/zerotier-gateway-controller/DEBIAN/postinst
-	install -D -m 0755 debian/prerm $(CURDIR)/debian/zerotier-gateway-controller/DEBIAN/prerm
+	dh $@ --buildsystem=pybuild
