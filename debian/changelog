@@ -5,4 +5,4 @@ zerotier-gateway-controller (1.0.0-1) unstable; urgency=medium
   * Includes systemd service, example config, and Ansible playbook stub.
   * Supports logging, priority-based failover, and API integration.
 
- -- Stephen Tan <stephen.tan@example.com>  Mon, 10 Jun 2024 12:00:00 +0000
+ -- Stephen Tan <stephentan@gmail.com>  Mon, 10 Jun 2024 12:00:00 +0000
