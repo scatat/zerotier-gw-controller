@@ -1,4 +1,3 @@
-zerotier-gw-controller/debian/rules
 #!/usr/bin/make -f
 
 %:
