@@ -79,7 +79,6 @@ jobs:
         with:
           name: deb-dist
           path: "*.deb"
-          path: "*.deb"
 
   release:
     runs-on: ubuntu-latest
