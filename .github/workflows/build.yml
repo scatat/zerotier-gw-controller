@@ -63,9 +63,8 @@ jobs:
 
       - name: Debug: List all .deb files after build
         run: |
-          echo "Listing all .deb files in project and parent directory:"
+          echo "Listing all .deb files in project directory:"
           find . -name "*.deb" -print
-          find .. -name "*.deb" -print
 
       - name: Archive Debian package
         uses: actions/upload-artifact@v4
