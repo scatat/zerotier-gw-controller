@@ -19,6 +19,14 @@ This document tracks the ongoing development, decisions, issues, and next steps 
   - `scripts/`
 - Added this progress log for ongoing tracking.
 - Planning for README.md and initial stub files.
+- Fixed all invalid first lines (path markers) in repo files.
+- Updated workflow to use latest actions and correct YAML syntax.
+- Ensured all steps use proper indentation and keys.
+- Added debug step to locate .deb files after build.
+- Fixed artifact upload to avoid forbidden relative paths.
+- Moved .deb file into project directory for artifact upload.
+- Migrated Python package metadata from setup.py to pyproject.toml.
+- Fixed debian packaging to use pybuild and modern debhelper.
 
 ---
 
@@ -34,12 +42,11 @@ This document tracks the ongoing development, decisions, issues, and next steps 
 
 ## Next Steps
 
-1. **Create README.md** with project overview and quick start.
-2. **Stub out core Python files**: `controller.py`, `cli.py`, `__init__.py`.
-3. **Add example config file**: `debian/config.yaml.example`.
-4. **Write initial test stubs** in `tests/`.
-5. **Draft Ansible playbook placeholder** for future automation.
-6. **Begin core logic implementation**: health check, failover, route update.
+1. **Verify .deb artifact upload in CI** (now moved into project directory).
+2. **Continue to iterate on controller logic and tests.**
+3. **Feed updated progress doc into next thread for continuity.**
+4. **Review and update documentation for packaging and workflow changes.**
+5. **Monitor for any further warnings or errors in CI and address immediately.**
 
 ---
 
@@ -48,18 +55,24 @@ This document tracks the ongoing development, decisions, issues, and next steps 
 - **Ansible Playbook:** Where should playbooks live? (`ansible/` or `scripts/ansible/`)
 - **Config reload:** Should the controller support live config reload, or require restart?
 - **Testing strategy:** How to best mock ZeroTier API and ping for local dev?
+- **Python packaging:** Should all metadata be managed in pyproject.toml only, or keep setup.py for legacy?
+- **Artifact upload:** Is moving .deb into project root the best long-term solution, or should build script be updated?
 
 ---
 
 ## Issues & Blockers
 
-_None at this time._
+- Setuptools/pyproject.toml warnings about metadata outside pyproject.toml (fixed by migration).
+- Artifact upload error: relative paths forbidden (fixed by moving .deb into project directory).
+- YAML syntax errors due to indentation, missing keys, or invalid first lines (fixed).
+- Debhelper/pybuild packaging errors (fixed by updating debian/rules and workflow).
 
 ---
 
 ## Change Log
 
 - **2024-06-10:** Project structure created, progress log started.
+- **2024-06-11:** Invalid first lines removed from all files. Workflow YAML and packaging issues fixed. Python metadata migrated to pyproject.toml. Artifact upload and debug steps corrected.
 
 ---
 

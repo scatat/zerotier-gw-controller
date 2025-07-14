@@ -16,6 +16,11 @@ dependencies = [
     "requests>=2.25.0",
     "PyYAML>=5.4",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux"
+]
 
 [project.urls]
 Homepage = "https://github.com/stephentan/zerotier-gateway-controller"
