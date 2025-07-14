@@ -61,11 +61,17 @@ jobs:
           sudo apt-get install -y build-essential dpkg-dev debhelper dh-python python3-all python3-setuptools
           ./scripts/build-deb.sh
 
+      - name: Debug: List all .deb files after build
+        run: |
+          echo "Listing all .deb files in project and parent directory:"
+          find . -name "*.deb" -print
+          find .. -name "*.deb" -print
+
       - name: Archive Debian package
         uses: actions/upload-artifact@v4
         with:
           name: deb-dist
-          path: "*.deb"
+          path: ../*.deb
 
   release:
     runs-on: ubuntu-latest
