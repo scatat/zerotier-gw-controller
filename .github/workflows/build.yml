@@ -70,10 +70,6 @@ jobs:
         run: |
           mv ../*.deb .
 
-      - name: Move .deb file into project directory
-        run: |
-          mv ../*.deb .
-
       - name: Archive Debian package
         uses: actions/upload-artifact@v4
         with:
