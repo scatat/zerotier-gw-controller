@@ -1,4 +1,3 @@
-zerotier-gw-controller/README.md
 # ZeroTier Gateway Controller
 
 ## Overview

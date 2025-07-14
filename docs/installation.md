@@ -1,4 +1,3 @@
-zerotier-gw-controller/docs/installation.md
 # ZeroTier Gateway Controller: Installation Guide
 
 This guide describes how to install and set up the ZeroTier Gateway Controller on your system.

@@ -1,4 +1,3 @@
-zerotier-gw-controller/debian/postinst
 #!/bin/bash
 # postinst script for zerotier-gateway-controller Debian package
 

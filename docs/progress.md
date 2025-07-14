@@ -1,4 +1,3 @@
-zerotier-gw-controller/docs/progress.md
 # ZeroTier Gateway Controller: Development Progress Log
 
 This document tracks the ongoing development, decisions, issues, and next steps for the ZeroTier Gateway Controller project. It is intended to provide a clear snapshot of project status for easy context switching and onboarding.

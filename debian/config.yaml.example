@@ -1,4 +1,3 @@
-zerotier-gw-controller/debian/config.yaml.example
 # Example configuration for ZeroTier Gateway Controller
 # Copy to /etc/zerotier-gateway-controller/config.yaml or ~/.config/zerotier-gateway-controller/config.yaml
 

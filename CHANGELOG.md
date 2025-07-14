@@ -1,4 +1,3 @@
-zerotier-gw-controller/CHANGELOG.md#L1-15
 # Changelog
 
 All notable changes to this project will be documented in this file.
